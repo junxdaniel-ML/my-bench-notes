@@ -4,9 +4,10 @@ import HeaderLink from './HeaderLink.astro';
 ---
 
 <header>
-	<nav class="flex items-center justify-between p-6 uppercase tracking-widest text-sm">
-		<div class="font-bold">myBenchNotes</div>
-		<div clase="space-x-6">
+	<nav>
+		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<div class="internal-links">
+			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
