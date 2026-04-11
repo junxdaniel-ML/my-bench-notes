@@ -140,3 +140,22 @@ hr {
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
+.watermark {
+	/* Fix it to the screen */
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	/* Rotate it diagonally and center it */
+	transform: translate(-50%, -50%) rotate(-45deg);
+	/* Styling the text */
+	font-size: 8rem;
+	font-weight: bold;
+	color: rgba(0, 0, 0, 0.1);  /* very light grey with low opacity */
+	/* ensure it doesn't block clicks */
+	pointer-events: none;
+	/* keep it behind the content but above the background */
+	z-index: -1;
+	/* Prevent text from being highlighted */
+	user-select: none;
+	white-space: nowrap;
+}
