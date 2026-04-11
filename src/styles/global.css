@@ -148,7 +148,7 @@ hr {
 	/* Rotate it diagonally and center it */
 	transform: translate(-50%, -50%) rotate(-45deg);
 	/* Styling the text */
-	font-size: 8rem;
+	font-size: 6rem;
 	font-weight: bold;
 	color: rgba(0, 0, 0, 0.1);  /* very light grey with low opacity */
 	/* ensure it doesn't block clicks */
