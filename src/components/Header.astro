@@ -5,12 +5,12 @@ import HeaderLink from './HeaderLink.astro';
 
 <header>
 	<nav class="flex items-center justify-between p-6 uppercase tracking-widest text-sm">
-		<div class="font-bold">myBenchNotes</div>
-		<div clase="space-x-6">
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
+		<div class="font-bold">Welcome to myBenchNotes</div>
+		<div class="space-x-6">
+			<HeaderLink href="/" class="hover:text-orange-500 transition-colors">Home</HeaderLink>
+			<HeaderLink href="/about" class="hover:text-orange-500 transition-colors">About</HeaderLink>
 		</div>
-		<div class="social-links">
+		<!-- <div class="social-links">
 			<a href="https://m.webtoo.ls/@astro" target="_blank">
 				<span class="sr-only">Follow Astro on Mastodon</span>
 				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
@@ -38,7 +38,7 @@ import HeaderLink from './HeaderLink.astro';
 					></path></svg
 				>
 			</a>
-		</div>
+		</div> -->
 	</nav>
 </header>
 <style>
