@@ -4,12 +4,11 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
-// Placeholder data structure for your topics
 const topics = [
 	{ name: 'Machine Learning', items: ['Neural Networks 101', 'Model Training Log', 'ML Project A'] },
 	{ name: 'Embedded Systems', items: ['ESP32 Troubleshooting', 'Shelly Scripting', 'Arduino Bench Notes'] },
-	{ name: 'Sports', items: ['Canyon Ultimate Review', 'ThinkRider Setup', 'Durham Trail Logs'] },
-	{ name: 'Travels', items: ['Montreal 2026', 'Road Logistics', 'Travel Kit'] }
+	{ name: 'Sports', items: [] },
+	{ name: 'Travels', items: [] }
 ];
 ---
 
@@ -18,118 +17,129 @@ const topics = [
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
+			main {
+				width: 100%;
+				max-width: 1400px;
+				margin: 0 auto;
+				padding: 2em 0; /* Removed side padding to keep items flush */
+			}
+
+			.welcome-bar {
+				padding: 1rem 2rem;
+				border-bottom: 1px solid #e5e7eb;
+				color: #4b5563;
+				font-size: 0.9rem;
+			}
+
 			.layout-container {
 				display: flex;
-				min-height: 80vh;
-				gap: 2rem;
+				align-items: flex-start;
 				margin-top: 2rem;
 			}
 
-			/* Sidebar Styling */
+			/* Sidebar: Flushed to the left */
 			aside {
-				width: 250px;
+				width: 280px;
+				background-color: #f6f3ef;
+				padding: 0rem;
+				min-height: 100vh;
 				flex-shrink: 0;
-				border-right: 1px solid #eee;
-				padding-right: 1rem;
+			}
+
+			.sidebar-title {
+				font-size: 2.2rem;
+				font-weight: 800;
+				margin-bottom: 1.5rem;
+				letter-spacing: -0.02em;
 			}
 
 			details {
-				margin-bottom: 1rem;
-				cursor: pointer;
+				margin-bottom: 1.2rem;
 			}
 
 			summary {
-				font-weight: bold;
-				font-size: 1.1rem;
 				list-style: none;
+				font-weight: 700;
+				font-size: 1.1rem;
+				cursor: pointer;
 				display: flex;
 				justify-content: space-between;
-				padding: 0.5rem;
-				border-radius: 4px;
-				background: #f9f9f9;
-			}
-
-			summary:hover {
-				background: #eee;
+				align-items: center;
 			}
 
 			summary::after {
-				content: '▶';
-				font-size: 0.8rem;
-				transition: transform 0.2s;
-			}
-
-			details[open] summary::after {
-				transform: rotate(90deg);
+				content: '▼';
+				font-size: 0.7rem;
 			}
 
 			.sidebar-list {
 				list-style: none;
-				padding-left: 1rem;
-				margin-top: 0.5rem;
+				padding: 0.8rem 0 0 0.5rem;
+				margin: 0;
 			}
 
 			.sidebar-list li {
-				padding: 0.3rem 0;
-				font-size: 0.9rem;
-				color: #555;
+				margin-bottom: 0.5rem;
 			}
 
-			.sidebar-list li:hover {
-				color: #000;
+			.sidebar-list li a {
+				color: #2563eb;
 				text-decoration: underline;
+				font-size: 0.9rem;
 			}
 
-			/* Main Content / Thumbnail Grid */
-			.main-content {
+			/* Main Content: 3 Column Grid */
+			.content-area {
 				flex-grow: 1;
+				padding: 0 4rem;
+			}
+
+			.featured-title {
+				font-size: 2.2rem;
+				font-weight: 800;
+				margin-bottom: 2.5rem;
 			}
 
 			.thumbnail-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-				gap: 1.5rem;
+				/* Forced 3-column layout */
+				grid-template-columns: repeat(3, 1fr); 
+				gap: 3rem;
 			}
 
-			.thumbnail-card {
-				border: 1px solid #ddd;
-				border-radius: 8px;
-				overflow: hidden;
-				transition: transform 0.2s;
-				background: #fff;
+			.card {
+				text-decoration: none;
+				color: inherit;
 			}
 
-			.thumbnail-card:hover {
-				transform: translateY(-5px);
-				box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-			}
-
-			.placeholder-img {
-				width: 100%;
-				height: 120px;
-				background: #ccc;
+			.thumb-box {
+				background-color: #cccccc;
+				aspect-ratio: 16 / 10;
+				border-radius: 4px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				color: #666;
-				font-size: 0.8rem;
+				font-size: 0.85rem;
+				margin-bottom: 1rem;
 			}
 
 			.card-text {
-				padding: 0.8rem;
-				font-weight: 500;
-				font-size: 0.95rem;
+				font-weight: 600;
+				font-size: 1.1rem;
+				color: #111827;
 			}
 		</style>
 	</head>
 	<body>
 		<div class="watermark">UNDER CONSTRUCTION</div>
 		<Header />
+		
 		<main class="layout-container">
 			<aside>
-				<h3>Blog Topics</h3>
+				<h1 class="sidebar-title">Blog Topics</h1>
 				{topics.map((topic) => (
-					<details>
+					<details open={topic.items.length > 0}>
 						<summary>{topic.name}</summary>
 						<ul class="sidebar-list">
 							{topic.items.map((item) => (
@@ -140,15 +150,14 @@ const topics = [
 				))}
 			</aside>
 
-			<section class="main-content">
-				<h2>Featured Notes</h2>
+			<section class="content-area">
+				<h1 class="featured-title">Featured Notes</h1>
 				<div class="thumbnail-grid">
-					{/* Placeholder logic: Show 6 sample cards */}
 					{[1, 2, 3, 4, 5, 6].map((i) => (
-						<div class="thumbnail-card">
-							<div class="placeholder-img">Thumbnail {i}</div>
+						<a href="#" class="card">
+							<div class="thumb-box">Thumbnail {i}</div>
 							<div class="card-text">Latest Project Update #{i}</div>
-						</div>
+						</a>
 					))}
 				</div>
 			</section>
