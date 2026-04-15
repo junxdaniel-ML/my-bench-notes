@@ -4,11 +4,11 @@ import Layout from '../layouts/BlogPost.astro';
 ---
 
 <Layout
-	title="About this"
-	description="My digital logbook"
-	pubDate={new Date('April 11. 2026')}
-	heroImage={AboutHeroImage}
+	title="About this";
+	description="My digital logbook";
+	pubDate={new Date('>April 11, 2026')}
 >
+	<div class="wallpaper-bg" style={`background-image: url(${AboutHeroImage.src});`}></div>
 	<div class="watermark">UNDER CONSTRUCTION</div>
 	<p>
 		myBenchNotes is a digital showroom and logbook documenting a life lived at the intersection 
@@ -38,3 +38,30 @@ import Layout from '../layouts/BlogPost.astro';
 				work and how to make them better. 
 	</p>
 </Layout>
+<style>
+	/* This creates the seamless wallpaper effect */
+	.wallpaper-bg {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 80vw;
+		height: 80vh;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		opacity: 0.05; /* Very subtle so text is readable */
+		z-index: -1; /* Sits behind everything */
+		pointer-events: none; /* Allows you to click things "through" the image */
+	}
+
+	.content-body {
+		position: relative;
+		z-index: 1; /* Ensures text stays on top */
+	}
+
+	.watermark { 
+		/* Keeps your diagonal orange text styling */
+		z-index: 2;
+	}
+</style>
